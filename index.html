@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#073c45">
+<title>Birthday Mail for You ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;600;700&display=swap');
+:root{--teal:#087e8b;--deep:#073c45;--aqua:#d9f0ec;--cream:#fffdf4;--yellow:#ffd95e;--pink:#f5a8b7}
+*{box-sizing:border-box}body{margin:0;background:#101416;color:#143c42;font-family:'Patrick Hand','Comic Sans MS',cursive;min-height:100vh}
+button{font:inherit;cursor:pointer}.screen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:18px}.screen.active{display:flex}
+.stage{width:min(100%,760px);position:relative;padding:16px;background:#f8f5e9;box-shadow:0 15px 60px #0008;border:8px solid #d5c6a4;min-height:520px;overflow:hidden}
+.stage:before{content:"";position:absolute;inset:7px;border:1px dashed #c9b78b;pointer-events:none}
+.page{position:relative;z-index:1;min-height:480px;padding:22px 24px;text-align:center;background:var(--cream);background-image:radial-gradient(#e7ddc9 .7px,transparent .7px);background-size:14px 14px}
+.tiny{font:700 11px 'Quicksand',sans-serif;letter-spacing:2px;text-transform:uppercase;color:#44858a}
+h1,h2,p{margin-top:8px}h1{font-size:clamp(28px,5vw,45px);line-height:1.03;color:var(--deep)}h2{font-size:29px;color:var(--deep)}p{font-size:19px;line-height:1.25}
+.decor{position:absolute;color:#f1bf30;font-size:25px}.d1{left:18px;top:15px}.d2{right:22px;top:18px}.d3{left:23px;bottom:20px}.d4{right:22px;bottom:18px}
+.medallion{width:190px;height:190px;border:10px solid #087e8b;outline:5px double #f7ce56;border-radius:50%;margin:16px auto;background:#e8f7ef;display:grid;place-items:center;box-shadow:inset 0 0 0 8px #f8f5e9,0 6px 0 #0a5e69}
+.doodle{font-size:72px;filter:drop-shadow(1px 2px #b8a77f)}
+.entry{display:grid;grid-template-columns:1fr 150px;gap:16px;align-items:center;max-width:520px;margin:14px auto}
+.digits{display:flex;gap:6px;justify-content:center;margin:14px 0}.digit{height:39px;width:37px;border:2px solid #0b8290;background:#e4f5f2;border-radius:7px;display:grid;place-items:center;font:700 20px 'Quicksand',sans-serif;color:#07505a}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.pad button{border:0;border-radius:50%;background:#087e8b;color:white;height:38px;width:38px;font:700 16px 'Quicksand',sans-serif;box-shadow:0 3px #064b56}.pad button:active{transform:translateY(2px);box-shadow:none}
+.btn{border:0;background:#087e8b;color:white;padding:10px 21px;border-radius:22px;font:700 13px 'Quicksand',sans-serif;letter-spacing:.4px;box-shadow:0 4px #064b56;margin:7px}.btn.light{background:#fff;color:#087e8b;border:1px solid #087e8b;box-shadow:0 3px #c1e3df}
+.err{color:#c33c5b;height:21px;font-size:16px}
+.page-screen{width:min(100%,800px)}.paper{position:relative;background:#fffdf4;border:8px solid #d9cba9;padding:22px;box-shadow:0 12px 45px #0007;min-height:550px;overflow:hidden}
+.paper:after{content:"";position:absolute;inset:7px;border:1px dashed #c5b38d;pointer-events:none}
+.paper-inner{position:relative;z-index:1;text-align:center;padding:12px 16px}.page-title{font-size:clamp(30px,6vw,47px);margin:10px 0;color:#064b56}
+.sticker{display:inline-block;background:#ffed9b;transform:rotate(-4deg);padding:6px 13px;font-size:19px;margin:5px}
+.dog{font-size:90px;line-height:1.1}.speech{background:#e4f4ee;border:2px solid #13828a;border-radius:50% 50% 45% 45%;padding:15px;max-width:330px;margin:12px auto;font-size:22px}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px auto;max-width:700px}
+.photo{background:#fff;padding:8px 8px 16px;box-shadow:0 3px 12px #6e5b3c2c;transform:rotate(-2deg)}.photo:nth-child(2){transform:rotate(2deg);margin-top:18px}.photo:nth-child(3){transform:rotate(-1deg)}
+.photo img{display:block;width:100%;height:220px;object-fit:cover;background:#dcece8}.caption{font-size:17px;padding-top:8px}
+.letter{max-width:580px;margin:15px auto;background:#fff8df;border:1px solid #eadcae;padding:20px;text-align:left;box-shadow:3px 4px #d8cba5}
+.letter p{font-size:20px}.facts{max-width:560px;text-align:left;margin:15px auto;font-size:20px;line-height:1.5}.facts li{padding:5px 0}
+.nav{display:flex;justify-content:center;flex-wrap:wrap;margin-top:15px}.pagecount{font:12px 'Quicksand',sans-serif;letter-spacing:2px;color:#568187;margin-top:10px}
+.animals{font-size:40px;letter-spacing:12px}.wish{font-size:50px}
+@media(max-width:540px){.stage{padding:8px;border-width:5px;min-height:auto}.page{padding:20px 12px;min-height:510px}.entry{grid-template-columns:1fr;gap:5px}.medallion{width:150px;height:150px}.doodle{font-size:60px}.paper{padding:10px;border-width:5px;min-height:540px}.paper-inner{padding:7px 4px}.photo-grid{grid-template-columns:1fr;max-width:280px}.photo img{height:230px}.photo:nth-child(2){margin-top:0}.letter{padding:14px}.facts{font-size:18px}}
+</style></head>
+<body>
+<section class="screen active" id="lock">
+ <div class="stage"><div class="page">
+  <span class="decor d1">✦</span><span class="decor d2">★</span><span class="decor d3">✧</span><span class="decor d4">★</span>
+  <div class="tiny">A secret birthday website • just for you</div>
+  <div class="medallion"><div class="doodle">🐶<br><span style="font-size:28px">♡ 🎂 ♡</span></div></div>
+  <h1>Imagine receiving this<br>on your birthday! 🎁</h1>
+  <p>Someone has prepared a tiny surprise for you.<br>Enter the secret passcode to open it!</p>
+  <div class="entry"><div><div class="digits"><span class="digit">□</span><span class="digit">□</span><span class="digit">□</span><span class="digit">□</span></div><div class="err" id="err"></div><div class="tiny">Four digits. One surprise.</div></div>
+   <div class="pad">
+    <button data-n="1">1</button><button data-n="2">2</button><button data-n="3">3</button>
+    <button data-n="4">4</button><button data-n="5">5</button><button data-n="6">6</button>
+    <button data-n="7">7</button><button data-n="8">8</button><button data-n="9">9</button>
+    <button id="clear" style="font-size:10px">CLR</button><button data-n="0">0</button><button id="back">⌫</button>
+   </div>
+  </div>
+  <p style="font-size:15px;color:#598186">Psst… only the birthday boy knows the code 😉</p>
+ </div></div>
+</section>
+
+<section class="screen" id="book">
+ <main class="page-screen">
+  <div class="paper"><div class="paper-inner" id="content"></div></div>
+  <div class="nav"><button class="btn light" id="prev">← PREVIOUS</button><button class="btn" id="next">NEXT PAGE →</button></div>
+  <div class="pagecount" id="pagecount">PAGE 1 OF 5</div>
+ </main>
+</section>
+<script>
+const PASSCODE="2297";let input="",page=0;
+const slides=[
+`<div class="tiny">Official birthday announcement</div><div class="wish">🎉 🎂 🎈</div><h1 class="page-title">HAPPY BIRTHDAY,<br>YOU LEGEND!</h1><div class="animals">🐶 ♡ 🐱</div><p>To my favourite human, professional troublemaker and full-time headache giver…</p><div class="sticker">TODAY YOU ARE THE MAIN CHARACTER ⭐</div><p>May your day be filled with cake, laughter, good food and zero responsibilities!</p><div class="dog">🎁</div><p><b>Scroll through your birthday memories, birthday boy!</b></p>`,
+`<div class="tiny">A very serious investigation</div><h1 class="page-title">WHY DID YOU…?</h1><div class="dog">🐶</div><div class="speech">…grow up so fast and still act like a confused puppy? 😂</div><p>Exhibit A: your face when someone says “be mature.”</p><div class="sticker">CASE STATUS: STILL SILLY</div><p>But honestly, never lose that goofy side of you. It makes you YOU. 💙</p><div class="animals">🐾 🐾 🐾</div>`,
+`<div class="tiny">Memory lane • bestie edition</div><h1 class="page-title">LITTLE MOMENTS,<br>BIG MEMORIES 📸</h1><p>Some photos are proof that life gives us the funniest memories with the right people.</p><div class="photo-grid">
+<div class="photo"><img src="images/childhood-memory.jpg" alt="Childhood memory"><div class="caption">The original model 🥹</div></div>
+<div class="photo"><img src="images/office-memory.jpg" alt="Office memory"><div class="caption">Caught in the wild 😂</div></div>
+<div class="photo"><img src="images/formal-memory.jpg" alt="Dressed up memory"><div class="caption">Main character mode 😎</div></div>
+</div><p>From the old version to the current update… still a limited edition!</p>`,
+`<div class="tiny">Facts about you</div><h1 class="page-title">LITTLE FACTS<br>ABOUT YOU ⭐</h1><ul class="facts"><li>✔ You can make an ordinary day feel funny.</li><li>✔ You are more important to people than you realise.</li><li>✔ You deserve all the good things you work for.</li><li>✔ Your smile should appear more often. Mandatory rule!</li><li>✔ You are stuck with this friendship. No returns. 😂</li></ul><div class="animals">🐶 🤝 🐱</div><div class="sticker">FRIENDSHIP CONTRACT: FOREVER</div>`,
+`<div class="tiny">A little note from me to you</div><h1 class="page-title">WITH LOVE ♡</h1><div class="letter"><p>Happy Birthday, da! ❤️</p><p>I hope this new year brings you happiness, good health, confidence, success and so many reasons to smile. Whatever life brings, I hope you always remember how special you are and how much you matter.</p><p>Thank you for being your wonderfully weird self. Keep chasing your dreams, keep laughing, and keep being the person you are. And please continue being my friend even when I annoy you… which means forever. 😌</p><p><b>Wishing you a year as amazing as you pretend to be! 😂🎂</b></p><p>Always cheering for you,<br>Your bestie 💌</p></div><div class="wish">🎂 💝 🌟</div><button class="btn" id="wish">MAKE A WISH ✨</button><p id="wishText" style="display:none"><b>Wish sent to the universe! 🌠 Now go make it happen!</b></p>`
+];
+function updateDigits(){document.querySelectorAll('.digit').forEach((el,i)=>el.textContent=input[i]||'□')}
+function unlock(){if(input===PASSCODE){document.getElementById('err').textContent='';document.getElementById('lock').classList.remove('active');document.getElementById('book').classList.add('active');render();confetti()}else{document.getElementById('err').textContent='Wrong code! Try again, birthday boy 😜';input='';updateDigits()}}
+document.querySelectorAll('[data-n]').forEach(b=>b.addEventListener('click',()=>{if(input.length<4){input+=b.dataset.n;updateDigits();if(input.length===4)setTimeout(unlock,180)}}));
+document.getElementById('clear').onclick=()=>{input='';updateDigits();document.getElementById('err').textContent=''};
+document.getElementById('back').onclick=()=>{input=input.slice(0,-1);updateDigits()};
+function render(){document.getElementById('content').innerHTML=slides[page];document.getElementById('pagecount').textContent=`PAGE ${page+1} OF ${slides.length}`;document.getElementById('prev').style.visibility=page===0?'hidden':'visible';document.getElementById('next').textContent=page===slides.length-1?'START AGAIN ↺':'NEXT PAGE →';let w=document.getElementById('wish');if(w)w.onclick=()=>{document.getElementById('wishText').style.display='block';confetti()};window.scrollTo(0,0)}
+document.getElementById('next').onclick=()=>{page=page===slides.length-1?0:page+1;render();confetti()};document.getElementById('prev').onclick=()=>{page=Math.max(0,page-1);render()};
+function confetti(){for(let i=0;i<28;i++){let e=document.createElement('span');e.textContent=['✦','♥','✧','★'][Math.floor(Math.random()*4)];e.style.cssText=`position:fixed;z-index:10;top:-20px;left:${Math.random()*100}vw;color:${['#f5a8b7','#ffd95e','#0a9aa5','#f6f1dd'][Math.floor(Math.random()*4)]};font-size:${12+Math.random()*18}px;pointer-events:none;animation:fall ${2+Math.random()*2.5}s linear forwards`;document.body.appendChild(e);setTimeout(()=>e.remove(),5000)}}
+const style=document.createElement('style');style.textContent='@keyframes fall{to{transform:translateY(110vh) rotate(600deg);opacity:.2}}';document.head.appendChild(style);
+</script></body></html>
